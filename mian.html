@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Click to Show GIF</title>
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --card: #15171c;
+      --text: #e8e8e8;
+      --muted: #a3a3a3;
+      --accent: #3b82f6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; height: 100vh; display: grid; place-items: center;
+      background: radial-gradient(1200px 600px at 50% -10%, #1f2430, var(--bg));
+      color: var(--text); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    .card {
+      width: min(560px, 94vw); background: var(--card); border-radius: 20px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.06);
+    }
+    h1 { margin: 0 0 8px; font-size: 20px; }
+    p { margin: 0 0 16px; color: var(--muted); font-size: 14px; }
+    .btn {
+      appearance: none; border: 0; outline: 0; cursor: pointer; user-select: none;
+      padding: 12px 16px; border-radius: 12px; font-size: 16px; font-weight: 600;
+      background: linear-gradient(180deg, #111827, #0f172a); color: #e5e7eb;
+      border: 1px solid rgba(255,255,255,.08); box-shadow: 0 6px 16px rgba(0,0,0,.25);
+      transition: transform .06s ease, box-shadow .2s ease, background .3s ease;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 22px rgba(0,0,0,.35); }
+    .btn:active { transform: translateY(0); }
+
+    .gif-wrap { display: none; margin-top: 16px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,.08); }
+    .gif-wrap.show { display: block; animation: fadeIn .25s ease-out; }
+    .gif-wrap img { display: block; width: 100%; height: auto; }
+
+    .row { display: flex; gap: 8px; align-items: center; }
+    .note { font-size: 12px; color: var(--muted); margin-top: 8px; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: scale(.98); } to { opacity: 1; transform: scale(1); } }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Чамд зориулсан GIF</h1>
+    <p>Өнөөдрийн бэлэг 😊.</p>
+
+    <div class="row">
+      <button class="btn" id="toggleBtn" type="button" onclick="toggleGif()">Бэлэг харуулах</button>
+    </div>
+
+    <div id="gifWrap" class="gif-wrap" aria-hidden="true">
+      <img id="gifImg" alt="Funny GIF" loading="lazy" />
+    </div>
+
+    <div class="note">Линк: media3.giphy.com • Зөвхөн дарахад ачаална.</div>
+  </div>
+
+  <script>
+    const GIF_URL = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWYxeW5wOXNlZzZjcDJmMGNoemdqNjVzaWJhN3hyNjVlY3poYnNnMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KzGCAlMiK6hQQ/giphy.gif";
+    let loaded = false;
+
+    function toggleGif() {
+      const wrap = document.getElementById('gifWrap');
+      const img = document.getElementById('gifImg');
+      const btn = document.getElementById('toggleBtn');
+
+      const willShow = wrap.style.display !== 'block';
+      wrap.classList.toggle('show', willShow);
+      wrap.style.display = willShow ? 'block' : 'none';
+
+      if (willShow) {
+        if (!loaded) { img.src = GIF_URL; loaded = true; }
+        btn.textContent = 'Бэлэг нуух';
+        wrap.setAttribute('aria-hidden', 'false');
+      } else {
+        btn.textContent = 'Бэлэг харуулах';
+        wrap.setAttribute('aria-hidden', 'true');
+      }
+    }
+  </script>
+</body>
+</html>
