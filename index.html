@@ -46,11 +46,10 @@
 </head>
 <body>
   <div class="card">
-    <h1>Чамд зориулсан бэлэг</h1>
-    <p>Өнөөдрийн бэлэг 😊.</p>
+    <h1>2024 оны top 10 кино</h1>
 
     <div class="row">
-      <button class="btn" id="toggleBtn" type="button" onclick="toggleGif()">Бэлэг харуулах</button>
+      <button class="btn" id="toggleBtn" type="button" onclick="toggleGif()">Танилцах</button>
     </div>
 
     <div id="gifWrap" class="gif-wrap" aria-hidden="true">
@@ -61,7 +60,7 @@
   </div>
 
   <script>
-    const GIF_URL = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWYxeW5wOXNlZzZjcDJmMGNoemdqNjVzaWJhN3hyNjVlY3poYnNnMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KzGCAlMiK6hQQ/giphy.gif";
+    const GIF_URL = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTRrNGU2c2dqanoxczY2dHFkeXo2NGZ2OHIxc2FwMTVicnQ1NXM1aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/I7p8K5EY9w9dC/giphy.gif";
     let loaded = false;
 
     function toggleGif() {
@@ -75,7 +74,7 @@
 
       if (willShow) {
         if (!loaded) { img.src = GIF_URL; loaded = true; }
-        btn.textContent = 'Бэлэг нуух';
+        btn.textContent = 'Сансарагаас 🖕';
         wrap.setAttribute('aria-hidden', 'false');
       } else {
         btn.textContent = 'Бэлэг харуулах';
@@ -85,3 +84,4 @@
   </script>
 </body>
 </html>
+
